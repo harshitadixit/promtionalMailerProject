@@ -23,6 +23,8 @@ public class CustomerController {
 
 	@Autowired
 	CustomerDAO dao;
+	
+	
 	@RequestMapping("deletescustomer")
 	public ModelAndView removecustomer(@RequestParam("cid") String cid){
 		dao.removeCustomer(cid);

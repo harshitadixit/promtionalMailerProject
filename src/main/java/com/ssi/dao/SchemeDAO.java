@@ -15,6 +15,22 @@ public class SchemeDAO {
   
 	@Autowired
 	SessionFactory sessionFactory;
+	
+	
+	public String getSchemeList(){
+		Session session=sessionFactory.openSession();
+		Criteria cr=session.createCriteria(Scheme.class);
+		List<Scheme> scheme=cr.list();
+		String s="Our Scheme discount : \n";
+		for(Scheme schemes:scheme){
+			s=s+schemes.getSdes()+","+schemes.getSdis()+"\n";
+		     
+		}
+		
+		return s;
+	}
+	
+	
 	public void removeScheme(String sid){
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();

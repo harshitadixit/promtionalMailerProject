@@ -9,8 +9,8 @@
 </head>
 <body>
     <center>
-        <h1>Sending e-mail with Spring MVC</h1>
-        <form method="post" action="sendMail">
+        <h1 76il;O>Welcome toour Email-Page</h1>
+        <form method="post" action="Mailconfirm">
             <table border="0" width="80%">
                 <tr>
                     <td>To:</td>
