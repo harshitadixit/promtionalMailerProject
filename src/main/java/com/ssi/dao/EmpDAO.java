@@ -23,7 +23,6 @@ public class EmpDAO {
 	@Autowired
 	SessionFactory sessionFactory;
 public String[] getAllEmpEmails(){
-		
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from Emp");
 		List<Emp> emp=query.list();

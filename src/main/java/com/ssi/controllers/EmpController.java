@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,7 +50,10 @@ public class EmpController {
 		return mv;
 	}
 	@RequestMapping("saveemp")
-	public ModelAndView saveEmpData(@ModelAttribute("emp") Emp emp){
+	public ModelAndView saveEmpData(@ModelAttribute("emp") Emp emp,BindingResult result){
+		if(result.hasErrors()){
+		
+		}
 	empdao.addEmp(emp);
 		ModelAndView mv=new ModelAndView("empenterysuccess");
 		return mv;

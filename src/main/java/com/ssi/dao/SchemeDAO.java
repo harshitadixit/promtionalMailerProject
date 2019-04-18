@@ -8,6 +8,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ssi.entities.Scheme;
 @Component
@@ -15,8 +18,15 @@ public class SchemeDAO {
   
 	@Autowired
 	SessionFactory sessionFactory;
+	SchemeDAO schemedao;
 	
-	
+	public Scheme getSchemeById(String sid){
+		Session session=sessionFactory.openSession();
+		Scheme scheme=session.get(Scheme.class, sid);
+		session.close();
+		return scheme;
+		
+	}
 	public String getSchemeList(){
 		Session session=sessionFactory.openSession();
 		Criteria cr=session.createCriteria(Scheme.class);
@@ -29,7 +39,6 @@ public class SchemeDAO {
 		
 		return s;
 	}
-	
 	
 	public void removeScheme(String sid){
 		Session session=sessionFactory.openSession();
@@ -52,7 +61,7 @@ public class SchemeDAO {
 		
 		   Session session=sessionFactory.openSession();
 		  Transaction tr=session.beginTransaction();
-		 session.save(scheme);
+		 session.saveOrUpdate(scheme);
 		 tr.commit();
 		 session.close();
 		 

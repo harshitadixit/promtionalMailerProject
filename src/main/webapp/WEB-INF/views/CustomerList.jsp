@@ -28,10 +28,10 @@
 				 <td>${customer.caddress}</td>
 				 <td>${customer.cemail}</td>
                 <td>${customer.cmobile}</td>
-               
-               
+                 <td><a href="messageform?empid=${customer.cemail }">msg</a></td>
                 
-				<c:url var="deleteLink" value="deleteCcustomer">
+                
+				<c:url var="deleteLink" value="deleteCustomer">
 					<c:param name="cid" value="${customer.cid}" />
 				</c:url>
 				<td><a href="${deleteLink}">[X]</a></td>
@@ -40,7 +40,7 @@
 				</c:url>
 				
 				<td><a href="${changeLink}">change</a></td>
-                </c:forEach>
+                </c:forEach>`
 </table>
 <a href="adminhome.jsp">Admin-Home</a>
 </body>
