@@ -17,6 +17,7 @@
 			<th>caddress</th>
 			<th>cemail</th>
 			<th>cmobile</th>
+			<th>cpassword</th>
 		
 
 			
@@ -28,9 +29,9 @@
 				 <td>${customer.caddress}</td>
 				 <td>${customer.cemail}</td>
                 <td>${customer.cmobile}</td>
-                 <td><a href="messageform?empid=${customer.cemail }">msg</a></td>
+                <td>${customer.cpassword}</td>
                 
-                
+                <td><a href="messageform?customerid=${customer.cemail }">msg</a></td>
 				<c:url var="deleteLink" value="deleteCustomer">
 					<c:param name="cid" value="${customer.cid}" />
 				</c:url>

@@ -5,24 +5,57 @@ import java.util.List;
 
 
 
+
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssi.dao.CustomerDAO;
-import com.ssi.dao.SchemeDAO;
 import com.ssi.entities.Customer;
-import com.ssi.entities.Scheme;
 
 @Controller
 public class CustomerController {
-
+@Autowired
+	CustomerDAO customerdao;
+	@RequestMapping("verifyCustomer")
+	public ModelAndView verifyCustomerData(@ModelAttribute("customer") Customer customer, HttpServletRequest request){	
+		boolean success=customerdao.verifyCustomer(customer);
+		if(success){
+		HttpSession session=request.getSession();
+		session.setAttribute("cid", customer.getCemail());
+		session.setAttribute("cpassword", customer.getCpassword());
+		ModelAndView mv=new ModelAndView("viewallcustomer");
+		return mv;
+		}else{
+			ModelAndView mv=new ModelAndView("viewallcustomer");
+			return mv;
+		}
+	}
 	@Autowired
 	CustomerDAO dao;
+	@RequestMapping("savechange")
+	public ModelAndView saveChanges(@ModelAttribute("customer") Customer customer){
+		dao.savecustomer(customer);
+		ModelAndView mv=new ModelAndView("redirect:viewallcustomer");
+		return mv;
+	}
+	
+	
+      @RequestMapping("updatecustomer")
+	public ModelAndView showUpdateCustomerform(@RequestParam("cid") String cid){
+		Customer customer=customerdao.getCustomerById(cid);
+		ModelAndView mv=new ModelAndView("customerupdateform");
+		mv.addObject("customer",customer);
+		return mv;
+	}
+	
 	
 	
 	@RequestMapping("deletescustomer")

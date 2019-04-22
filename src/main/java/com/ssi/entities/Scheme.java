@@ -50,6 +50,12 @@ public class Scheme {
 	public void setStit(String stit) {
 		this.stit = stit;
 	}
+	@Override
+	public String toString() {
+		return "Scheme [sid=" + sid + ", stit=" + stit + ", sdes=" + sdes
+				+ ", slundate=" + slundate + ", senddate=" + senddate
+				+ ", sdis=" + sdis + "]";
+	}
 	
 	
 }

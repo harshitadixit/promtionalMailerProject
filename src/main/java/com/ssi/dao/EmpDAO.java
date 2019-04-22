@@ -12,16 +12,40 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ssi.entities.Customer;
 import com.ssi.entities.Emp;
 import com.ssi.entities.Scheme;
-
 @Component
 
 
 public class EmpDAO {
 	@Autowired
 	SessionFactory sessionFactory;
+	public Emp getEmpById(String eid){
+		Session session=sessionFactory.openSession();
+		Emp emp=session.get(Emp.class, eid);
+		session.close();
+		return emp;
+	}
+	
+	
+	
+	public boolean verifyEmp(Emp emp){
+		Session session=sessionFactory.openSession();
+		String hql="from Emp where email=:email and epassword=:epassword";
+		Query query=session.createQuery(hql);
+		query.setParameter("email", emp.getEmail());
+		query.setParameter("epassword", emp.getEpassword());
+		List<Emp> userList=query.list();
+		int no=userList.size();
+		session.close();
+		if(no==0){
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+	
 public String[] getAllEmpEmails(){
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from Emp");
@@ -45,7 +69,7 @@ public String[] getAllEmpEmails(){
 public void addEmp(Emp emp){
 	Session session=sessionFactory.openSession();
 	Transaction tr=session.beginTransaction();
-	session.save(emp);
+	session.saveOrUpdate(emp);
 	tr.commit();
 	session.close();
 }
@@ -58,4 +82,5 @@ public List<Emp> getAllEmp(){
 	
 }
 	
+
 }

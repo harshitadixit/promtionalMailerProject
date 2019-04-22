@@ -4,14 +4,13 @@ import javax.persistence.Entity;
 
 import javax.persistence.Id;
 
-
 @Entity
 public class Customer {
  @Id
 	private String cid;
  
 	private String cname;
- 
+    private String cpassword;
 	private String caddress;
 	private String cemail;
 	private String cmobile;
@@ -44,6 +43,13 @@ public class Customer {
 	}
 	public void setCmobile(String cmobile) {
 		this.cmobile = cmobile;
+	}
+	
+	public String getCpassword() {
+		return cpassword;
+	}
+	public void setCpassword(String cpassword) {
+		this.cpassword = cpassword;
 	}
 	@Override
 	public String toString() {

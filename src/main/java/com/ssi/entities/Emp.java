@@ -12,6 +12,13 @@ public class Emp {
 	private String emobile;
 	private String Email;
 	private String eaddress;
+	private String epassword;
+	public String getEpassword() {
+		return epassword;
+	}
+	public void setEpassword(String epassword) {
+		this.epassword = epassword;
+	}
 	private String esal;
 	private String escheme;
 	public String getEid() {

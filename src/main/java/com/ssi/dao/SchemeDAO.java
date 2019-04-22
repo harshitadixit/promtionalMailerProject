@@ -8,11 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.ssi.entities.Scheme;
+import com.ssi.dao.SchemeDAO;
 @Component
 public class SchemeDAO {
   
@@ -60,8 +57,9 @@ public class SchemeDAO {
 	public void addScheme(Scheme scheme){
 		
 		   Session session=sessionFactory.openSession();
+		   session.saveOrUpdate(scheme);
+			 
 		  Transaction tr=session.beginTransaction();
-		 session.saveOrUpdate(scheme);
 		 tr.commit();
 		 session.close();
 		 

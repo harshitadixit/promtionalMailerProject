@@ -15,7 +15,8 @@ import com.ssi.entities.Scheme;
 @Controller
 
 public class SchemeController {
-	
+	@Autowired
+	SchemeDAO schemeDAO;
 
 	
 	
@@ -28,8 +29,7 @@ public class SchemeController {
 	
 	
 	
-	@Autowired
-	SchemeDAO schemeDAO;
+	
 	@RequestMapping("saveschemechanges")
 	public ModelAndView saveschemechanges(@ModelAttribute("scheme") Scheme scheme){
 		 schemeDAO.addScheme(scheme);

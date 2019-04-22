@@ -18,6 +18,7 @@
 			<th>Eaddress</th>
 			<th>Esal</th> 
 			<th>Escheme</th>
+			<th>Epassword</th>
 			                                
 		</tr>
 		<c:forEach items="${emp}" var="emp">
@@ -29,9 +30,10 @@
 				 <th>${emp.eaddress}</th>
                 <td>${emp.esal}</td>
                 <th>${emp.escheme}</th>
-               
+               <th>${emp.epassword}</th>
                
            
+                 
                 
 				<c:url var="deleteLink" value="deleteemp">
 					<c:param name="eid" value="${emp.eid}" />
